@@ -1,0 +1,18 @@
+name: Deployment
+
+on:
+  push:
+    branches: ["main"]
+
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: [self-hosted]
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Container
+        run: docker compose -p agile-workshop up -d --no-deps -V --build --force-recreate
+
+      - name: Clean Unused Images
+        run: docker image prune -f
