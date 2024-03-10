@@ -7,7 +7,5 @@ services:
       context: .
       dockerfile: Dockerfile
     restart: always
-    voulmes:
-      - .:/app
     ports:
       - "8080:80"
